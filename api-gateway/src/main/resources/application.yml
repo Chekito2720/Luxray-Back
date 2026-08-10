@@ -15,6 +15,7 @@ spring:
               - "http://localhost:4200"
               - "http://localhost:4300"
               - "http://127.0.0.1:4200"
+              - "https://luxray-front-74c6.vercel.app"
             allowedMethods:
               - GET
               - POST
@@ -52,6 +53,10 @@ spring:
             - Path=/api/analytics/**
           filters:
             - StripPrefix=1
+        - id: search-service
+          uri: http://localhost:8084
+          predicates:
+            - Path=/api/search/**
 
 eureka:
   client:

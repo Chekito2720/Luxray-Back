@@ -19,6 +19,10 @@ case "$SERVICE" in
     echo "🚀 Iniciando Analytics Service en puerto 8083"
     exec java -XX:MaxRAMPercentage=75.0 -jar analytics-service.jar
     ;;
+  search-service)
+    echo "🚀 Iniciando Search Service en puerto 8084"
+    exec java -XX:MaxRAMPercentage=75.0 -jar search-service.jar
+    ;;
   api-gateway)
     echo "🚀 Iniciando API Gateway en puerto 8080"
     exec java -XX:MaxRAMPercentage=75.0 -jar api-gateway.jar
@@ -29,7 +33,7 @@ case "$SERVICE" in
     ;;
   *)
     echo "❌ SERVICE desconocido: $SERVICE"
-    echo "Valores válidos: auth-service, cursos-service, analytics-service, api-gateway, discovery-service"
+    echo "Valores válidos: auth-service, cursos-service, analytics-service, search-service, api-gateway, discovery-service"
     exit 1
     ;;
 esac

@@ -52,6 +52,10 @@ spring:
             - Path=/api/analytics/**
           filters:
             - StripPrefix=1
+        - id: search-service
+          uri: http://localhost:8084
+          predicates:
+            - Path=/api/search/**
 
 eureka:
   client:

@@ -7,6 +7,7 @@ COPY discovery-service discovery-service
 COPY auth-service auth-service
 COPY cursos-service cursos-service
 COPY analytics-service analytics-service
+COPY search-service search-service
 COPY api-gateway api-gateway
 RUN mvn -B -ntp -pl api-gateway -am package -DskipTests
 

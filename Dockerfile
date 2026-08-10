@@ -10,12 +10,13 @@ WORKDIR /app
 
 # Copia solo pom.xml y descarga dependencias (cache layer)
 COPY pom.xml .
-COPY common/pom.xml common/
+COPY common-lib/pom.xml common-lib/
 COPY auth-service/pom.xml auth-service/
 COPY cursos-service/pom.xml cursos-service/
 COPY analytics-service/pom.xml analytics-service/
 COPY api-gateway/pom.xml api-gateway/
 COPY discovery-service/pom.xml discovery-service/
+COPY search-service/pom.xml search-service/
 
 RUN mvn dependency:go-offline -B -q
 
@@ -38,6 +39,7 @@ WORKDIR /app
 COPY --from=builder /app/auth-service/target/*.jar auth-service.jar
 COPY --from=builder /app/cursos-service/target/*.jar cursos-service.jar
 COPY --from=builder /app/analytics-service/target/*.jar analytics-service.jar
+COPY --from=builder /app/search-service/target/*.jar search-service.jar
 COPY --from=builder /app/api-gateway/target/*.jar api-gateway.jar
 COPY --from=builder /app/discovery-service/target/*.jar discovery-service.jar
 
@@ -47,6 +49,6 @@ RUN chmod +x /entrypoint.sh
 
 USER appuser
 
-EXPOSE 8080 8081 8082 8083 8761
+EXPOSE 8080 8081 8082 8083 8084 8761
 
 ENTRYPOINT ["/entrypoint.sh"]
